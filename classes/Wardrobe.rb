@@ -58,8 +58,10 @@ class Wardrobe
 
         @@user_type = choose_the_user_type
         if @@user_type == "clerk"
+            puts ""
             menu_for_clerk
         elsif @@user_type == "customer"
+            puts ""
             menu_for_customer
         end
     end
@@ -70,7 +72,7 @@ class Wardrobe
             puts "Please choose from the following options!"
             puts "1. Clerk"
             puts "2. Customer"
-            puts "3. Exit"
+            puts "3. Exit the program"
             print "> "
 
             case Integer(option = gets.chomp)
@@ -79,15 +81,13 @@ class Wardrobe
             when 2
                 return "customer"
             when 3
-                puts ""
-                puts "Thank you!"
-                puts ""
-
-                exit(0)
+                exit_program
+            else
+                raise ArgumentError
             end
         rescue ArgumentError
             puts ""
-            puts "#{option} is not a valid option!"
+            puts "\"#{option}\" is not a valid option!"
             puts ""
 
             retry
@@ -95,22 +95,88 @@ class Wardrobe
     end
 
     def menu_for_clerk
-        loop do
-            
+        option = nil
+        begin
+            puts "You are on the clerk's menu!"
+            puts "Please choose from the following options!"
+            puts "1. Show all items"
+            puts "2. Add new item"
+            puts "3. Exit the program"
+            print "> "
+
+            case Integer(option = gets.chomp)
+            when 1
+                show_all_items
+            when 2
+                add_new_item
+            when 3
+                exit_program
+            else
+                raise ArgumentError
+            end
+        rescue ArgumentError
+            puts ""
+            puts "\"#{option}\" is not a valid option!"
+            puts ""
+
+            retry
         end
     end
 
     def menu_for_customer
-        loop do
-            
+        option = nil
+        begin
+            puts "You are on the customer's menu!"
+            puts "Please choose from the following options!"
+            puts "1. Show all items"
+            puts "2. Add new item"
+            puts "3. Exit the program"
+            print "> "
+
+            case Integer(option = gets.chomp)
+            when 1
+                show_all_items
+            when 2
+                show_shopping_cart
+            when 3
+                exit_program
+            else
+                raise ArgumentError
+            end
+        rescue ArgumentError
+            puts ""
+            puts "\"#{option}\" is not a valid option!"
+            puts ""
+
+            retry
         end
+    end
+
+    def exit_program
+        puts ""
+        puts "Thank you!"
+        puts ""
+
+        exit(0)
+    end
+
+    def show_all_items
+        pp @@clothes
+    end
+
+    def delete_item
+
+    end
+
+    def add_item_to_shopping_cart
+
     end
 
     def add_new_item(item)
         @@clothes[item.class.to_s.downcase.to_sym] << item
     end
 
-    def show_all_items
-        pp @@clothes
+    def show_shopping_cart
+
     end
 end
