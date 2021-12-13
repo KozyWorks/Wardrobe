@@ -1,56 +1,59 @@
 # Wardrobe
+## Software Development Plan
+### Describe at a high level what the application will do
+Wardrobe is the application that bascially has two different options.
 
-## To-Do List
-1. Documentation
-   1. README document
-        - separate heading for each documentation requirement
-        - full attribution to referenced sources
-        - Software Development Plan (300 - 500 words)
-          - describe what the application will do
-          - identify the problem it will solve and explain the purpose of developing
-          - identify target audience
-          - explain how a member of the target audience will use it
-        - minimum three features and describe each (100 words for each features)
-          - use of variables and their scopes
-          - loop and conditional control structures
-          - error handling
-        - Develop an outline of the user interaction and experience for the application
-          - how the user will find out how to interact with / use each feature
-          - how the user will interact with / use each feature
-          - how errors will be handled by the application and displayed to the user
-        - Control flow diagram
-          - show the workflow/logic and/or integration of the features in your application for each feature
-          - utilise UML
-        - Implementation plan
-          - how each feature will be implemented
-          - checklist of tasks for each feature
-          - prioritise the implementation of different features or checklist items within a feature
-          - provide time indicator for each feature or checklist item
-          - 5 checklists for each feature
-        - Help documentation
-          - how to install the app
-          - any dependencies
-          - any system requirements
-   2. Slide deck
-2. Presentation
-   1. present both code and app
-        - walk-through of app, its features and how it used
-        - walk-through of the logic of app and code
-        - challenges, ethical issues, favourite parts, etc
-3. Code
-   1. Include:
-        - variable and their scope
-        - loop and conditional control structures
-        - functions
-        - error handling
-        - input and output
-        - import and use Ruby Gem
-    2. DRY coding
-    3. consistent
-    4. error handling
-    5. TWO tests
-        - cover different feature of the application
-        - state what is being tested
-        - TWO test cases and expected results for each test case
-    6. minimum 20 commits on source control
-    7. write a script which turns the application into an executable
+One is for the "Clerk" of the clothes store where he/she can view the clothes those are available in the store, add and remove the clothes from their database. Currently it utilizes plain .txt files rather than real Database (DB) system.
+
+On the other hand the application also supports the "Customer" mode which allows the customer to view all the clothes available in the store, add the item into the shopping cart and make a payment via credit card. The current system only allows the payment method of credit card, but it is possible to be extended to PayPal, direct debit, Afterpay, etc.
+
+### Identify the problem it will solve and explain why you are developing it
+The purpose of this application is to allow the store and clerk to easily manage the items available in the store and to reduce the time spent on them manually tracking each items.
+
+On the customer's perspective, it is to ease them tracking their shopping cart and also to provide the fluent experience of the online shopping.
+
+### Identify the target audience
+The target audiences would be any clothing stores which are having difficulties on managing their stocks. The current system is focused on clothes, but this could be extended further in the future and could be used as a prototype for those who are willing to open their online store of any kinds.
+
+### Explain how a member of the target audience will use it
+The current system is built as a terminal application where the user gets prompted to choose their user type between "Clerk" and "Customer". If the user is not willing to proceed any further, they also get an option to quit the program.
+
+Once the user chooses user type, they are prompted with several options where they can add, delete and view items to the database and also to the shopping cart.
+
+Every time when the user types in invalid option or the input, the user will be informed an error that their option or input is not valid.
+
+### Features and description
+
+#### .txt based database
+There are four different categories of clothes available for the current system and data for each categories are stored in separate .txt files to easily manage them and details include:
+- name **(String)**
+- brand **(String)**
+- type **(String)**
+- color **(String)**
+- size **(Integer)**
+- stock **(Integer)**
+- price **(Float)**
+
+where each details are separated with "　" and each item is stored in each line.
+
+The program will go through each item and create the object based on their type, the category. The created instance will then be stored into a hash called "clothes" where this hash is a class variable. That being said no matter how many Wardrobe instance gets created, this will be shared through the class.
+
+This hash gets updated through the iteration of the program which gets stored into the each .txt files before the program gets terminated.
+
+#### Shopping cart
+Shopping cart is an array of clothes which is stored in Wardrobe object as an instance variable. That said, the shopping cart is unique to each wardrobe object and thus the user can have their own shopping cart in theory.
+
+#### Payment
+
+- Menu for clerk
+  - **Show all items:** shows every items available in the store separated by categories.
+    - **Delete item:** prompts the user to choose the category and item number to delete an item from database.
+  - **Add new item:** creates the new clothes object and stores it into the hash
+    - **Input item details:** prompts the user to type in name, brand, type, color, size, stock and price of the new item then returns those data in array
+  - **Exit program:** exits the program.
+- Menu for customer
+  - **Show all items:** shows every items available in the store separated by categories.
+    - **Add item to shopping cart:** prompts the user to choose the category and item number to add an item into their shopping cart.
+  - **Show shopping cart:** shows the list of items from the shopping cart.
+    - **Make a payment:** prompts the user to type in the card number, expiry month & year, cardholder's name and CVC, then proceed payment.
+  - **Exit program:** exits the program.
