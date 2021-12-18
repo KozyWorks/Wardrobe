@@ -29,7 +29,7 @@ There are four different categories of clothes available for the current system 
 - name **(String)**
 - brand **(String)**
 - type **(String)**
-- color **(String)**
+- colour **(String)**
 - size **(Integer)**
 - stock **(Integer)**
 - price **(Float)**
@@ -49,7 +49,7 @@ Shopping cart is an array of clothes which is stored in Wardrobe object as an in
   - **Show all items:** shows every items available in the store separated by categories.
     - **Delete item:** prompts the user to choose the category and item number to delete an item from database.
   - **Add new item:** creates the new clothes object and stores it into the hash
-    - **Input item details:** prompts the user to type in name, brand, type, color, size, stock and price of the new item then returns those data in array
+    - **Input item details:** prompts the user to type in name, brand, type, colour, size, stock and price of the new item then returns those data in array
   - **Exit program:** exits the program.
 - Menu for customer
   - **Show all items:** shows every items available in the store separated by categories.

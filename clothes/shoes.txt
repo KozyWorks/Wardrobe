@@ -1,2 +1,2 @@
-name:OLD SKOOL BLACK　brand:Vans　type:Sneaker　color:Black/White　size:11　stock:12　price:129.99
-name:CLASSIC SLIP-ONS CHECKERBOARD　brand:Vans　type:Slip-On　color:Black and White Checker/White　size:10　stock:15　price:109.99
+name:OLD SKOOL BLACK　brand:Vans　type:Sneaker　colour:Black/White　size:11　stock:12　price:129.99
+name:CLASSIC SLIP-ONS CHECKERBOARD　brand:Vans　type:Slip-On　colour:Black and White Checker/White　size:10　stock:15　price:109.99

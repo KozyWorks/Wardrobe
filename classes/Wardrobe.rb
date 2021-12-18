@@ -18,11 +18,7 @@ class Wardrobe
 
         run_program
     end
-
-    def clothes
-        @@clothes
-    end
-
+    
     def retrive_data_from_files
         Dir.foreach("./clothes") do |filename|
             next if filename == '.' or filename == '..'
@@ -30,7 +26,7 @@ class Wardrobe
 
             category = filename.gsub(".txt", "")
             
-            file = File.open("./clothes/" + filename, "a+")
+            file = File.open("./clothes/" + filename)
 
             file.each_line do |line|
                 details = []
@@ -70,9 +66,9 @@ class Wardrobe
         option = nil
         begin
             puts "Please choose from the following options!"
-            puts "1. Clerk"
-            puts "2. Customer"
-            puts "3. Exit the program"
+            puts "[1] Clerk"
+            puts "[2] Customer"
+            puts "[3] Exit the program"
             print "> "
 
             case Integer(option = gets.chomp)
@@ -99,9 +95,9 @@ class Wardrobe
         begin
             puts "You are on the clerk's menu!"
             puts "Please choose from the following options!"
-            puts "1. Show all items"
-            puts "2. Add new item"
-            puts "3. Exit the program"
+            puts "[1] Show all items"
+            puts "[2] Add new item"
+            puts "[3] Exit the program"
             print "> "
 
             case Integer(option = gets.chomp)
@@ -128,9 +124,9 @@ class Wardrobe
         begin
             puts "You are on the customer's menu!"
             puts "Please choose from the following options!"
-            puts "1. Show all items"
-            puts "2. Add new item"
-            puts "3. Exit the program"
+            puts "[1] Show all items"
+            puts "[2] Add new item"
+            puts "[3] Exit the program"
             print "> "
 
             case Integer(option = gets.chomp)
@@ -161,7 +157,20 @@ class Wardrobe
     end
 
     def show_all_items
-        pp @@clothes
+        puts ""
+
+        @@clothes.each do |category, items|
+            puts "============================================="
+            puts category.upcase
+            puts "============================================="
+
+            items.each_with_index do |item, index|
+                puts item.display_details
+                puts "" if item != items[-1]
+            end
+
+            puts ""
+        end
     end
 
     def delete_item

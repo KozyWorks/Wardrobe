@@ -5,12 +5,3 @@ def main
 end
 
 main
-
-# READING FROM JSON
-# file = File.read("file.json")
-# hash = JSON.parse(file)
-
-# WRITING TO JSON
-# File.open("file.json", "w") do |file|
-#     file.write(hash.to_json)
-# end

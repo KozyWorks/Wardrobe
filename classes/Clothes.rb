@@ -1,15 +1,13 @@
-class Clothes
-    def initialize(name, brand, type, color, size, stock, price)
-        @name = name
-        @brand = brand
-        @type = type
-        @color = color
+require_relative "Goods"
+
+class Clothes < Goods
+    def initialize(name="", brand="", type="", colour="", size=0, stock=0, price=0.00)
+        super(name, brand, type, stock, price)
+
+        @colour = colour
         @size = size
-        @stock = stock
-        @price = price
     end
 
     def display_details
     end
 end
-
