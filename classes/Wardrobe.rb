@@ -42,7 +42,7 @@ class Wardrobe
                     details << value
                 end
 
-                add_new_item(Object.const_get(category.capitalize).new(*details))
+                @@clothes[category.to_sym] << Object.const_get(category.capitalize).new(*details)
             end
 
             file.close
@@ -66,10 +66,7 @@ class Wardrobe
         option = nil
         begin
             puts "Please choose from the following options!"
-            puts "[1] Clerk"
-            puts "[2] Customer"
-            puts "[3] Exit the program"
-            print "> "
+            create_menu(["Clerk", "Customer", "Exit the program"])
 
             case Integer(option = gets.chomp)
             when 1
@@ -95,10 +92,7 @@ class Wardrobe
         begin
             puts "You are on the clerk's menu!"
             puts "Please choose from the following options!"
-            puts "[1] Show all items"
-            puts "[2] Add new item"
-            puts "[3] Exit the program"
-            print "> "
+            create_menu(["Show all items", "Add new item", "Exit the program"])
 
             case Integer(option = gets.chomp)
             when 1
@@ -124,10 +118,7 @@ class Wardrobe
         begin
             puts "You are on the customer's menu!"
             puts "Please choose from the following options!"
-            puts "[1] Show all items"
-            puts "[2] Add new item"
-            puts "[3] Exit the program"
-            print "> "
+            create_menu(["Show all items", "Show shopping cart", "Exit the program"])
 
             case Integer(option = gets.chomp)
             when 1
@@ -160,11 +151,15 @@ class Wardrobe
         puts ""
 
         @@clothes.each do |category, items|
-            puts "============================================="
-            puts category.upcase
-            puts "============================================="
-
+            next if items.empty?
+            
+            puts "=============================================".colorize(:blue)
+            puts "== #{category.to_s.upcase}".colorize(:blue)
+            puts "=============================================".colorize(:blue)
+            
             items.each_with_index do |item, index|
+                puts "" if item == items[0]
+                puts "[#{index + 1}]".colorize(:green)
                 puts item.display_details
                 puts "" if item != items[-1]
             end
@@ -181,11 +176,19 @@ class Wardrobe
 
     end
 
-    def add_new_item(item)
-        @@clothes[item.class.to_s.downcase.to_sym] << item
+    def add_new_item
+        
     end
 
     def show_shopping_cart
 
+    end
+
+    def create_menu(menu)
+        menu.each_with_index do |item, index|
+            puts "[#{index + 1}]".colorize(:green) + " #{item}"
+        end
+
+        print "> ".colorize(:light_red)
     end
 end

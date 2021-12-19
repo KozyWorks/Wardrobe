@@ -1,3 +1,5 @@
+require "colorize"
+
 require_relative "Goods"
 
 class Clothes < Goods
@@ -9,5 +11,12 @@ class Clothes < Goods
     end
 
     def display_details
+        return "Name:".colorize(:yellow) + " #{@name} / " +
+        "Brand:".colorize(:yellow) + " #{@brand}" +
+        "\nType:".colorize(:yellow) + " #{@type}" +
+        "\nColour:".colorize(:yellow) + " #{@colour}" +
+        "\nSize:".colorize(:yellow) + " #{@size}" +
+        "\nStock:".colorize(:yellow) + " #{@stock} / " +
+        "Price:".colorize(:yellow) + " $#{@price}"
     end
 end
