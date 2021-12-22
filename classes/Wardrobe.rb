@@ -7,6 +7,12 @@ require_relative "Shoes"
 
 FILE_PATH = "./clothes/"
 
+class InvalidCategoryError < StandardError
+end
+
+class NoStockError < StandardError
+end
+
 class Wardrobe
     @@user_type = ""
 
@@ -235,7 +241,7 @@ class Wardrobe
             category = Integer(category = gets.chomp)
 
             if category.between?(1, 5) == false
-                raise ArgumentError
+                raise InvalidCategoryError
             else
                 case category
                 when 1
@@ -256,11 +262,13 @@ class Wardrobe
             end
         rescue ArgumentError
             puts ""
-            if (category == "hat" || category == "top" || category == "pants" || category == "shoes")
-                puts "No item exists to delete for \"#{category.capitalize}\"!"
-            else
-                puts "\"#{category}\" is not a valid option!"
-            end
+            puts "\"#{category}\" is not a valid option!"
+            puts ""
+
+            retry
+        rescue InvalidCategoryError
+            puts ""
+            puts "No item exists to delete for \"#{category.capitalize}\"!"
             puts ""
 
             retry
@@ -353,6 +361,8 @@ class Wardrobe
             if index.between?(1, clothes.size) == false
                 raise ArgumentError
             else
+                raise NoStockError if clothes[index - 1].stock == 0
+
                 @shopping_cart << clothes[index - 1]
 
                 puts ""
@@ -364,6 +374,12 @@ class Wardrobe
             puts ""
 
             retry
+        rescue NoStockError
+            puts ""
+            puts "No stock left for the selected item!"
+            puts ""
+
+            return
         end
 
         puts ""
@@ -495,6 +511,10 @@ class Wardrobe
         option = nil
         begin
             loop do
+                if @shopping_cart.size < 1
+                    return
+                end
+
                 create_menu(["Remove item from the shopping cart", "Make a payment", "Return to the previous menu"])
 
                 option = Integer(option = gets.chomp)
@@ -523,8 +543,35 @@ class Wardrobe
 
     def remove_item_from_shopping_cart
         puts ""
-        puts "remove_item_from_shopping_cart"
-        puts ""
+        index = nil
+        begin
+            puts "Please choose an item from the following:"
+
+            @shopping_cart.each_with_index do |item, i|
+                puts "[#{i + 1}]".colorize(:green) + " #{item.display_details_one_line}"
+            end
+            print "> ".colorize(:light_red)
+
+            index = Integer(index = gets.chomp)
+
+            if index.between?(1, @shopping_cart.size) == false
+                raise ArgumentError
+            else
+                @shopping_cart.delete_at(index - 1)
+
+                puts ""
+                puts "The item has been successfully deleted from your shopping cart!"
+                puts "" if @shopping_cart.size >= 1
+
+                return
+            end
+        rescue ArgumentError
+            puts ""
+            puts "\"#{index}\" is not a valid option!"
+            puts ""
+
+            retry
+        end
         
         return
     end
@@ -534,15 +581,83 @@ class Wardrobe
         @shopping_cart.each do |item|
             total_cost += item.price
         end
-        total_cost = total_cost.round(2)
 
         puts ""
-        puts "The total cost is $#{total_cost}."
+        puts "The total cost is $#{"%.2f" % total_cost}."
         
         puts ""
         puts "Please enter the following card details:"
 
+        puts ""
+        card_number = nil
+        begin
+            print "Card number (must be 16 digits)? ".colorize(:light_red)
+
+            card_number = gets.chomp
+
+            raise ArgumentError if card_number.length != 16
+
+            card_number = Integer(card_number)
+        rescue ArgumentError
+            puts ""
+            puts "\"#{card_number}\" is not a valid input!"
+            puts ""
+
+            retry
+        end
         
+        puts ""
+        expiry_month = nil
+        begin
+            print "Expiry month (MM)? ".colorize(:light_red)
+
+            expiry_month = gets.chomp
+
+            raise ArgumentError if expiry_month.length != 2
+
+            expiry_month = Integer(expiry_month)
+
+            raise ArgumentError if (expiry_month < 1 || expiry_month > 12)
+        rescue ArgumentError
+            puts ""
+            puts "\"#{expiry_month}\" is not a valid input!"
+            puts ""
+
+            retry
+        end
+
+        puts ""
+        expiry_year = nil
+        begin
+            print "Expiry year (YY)? ".colorize(:light_red)
+
+            expiry_year = gets.chomp
+
+            raise ArgumentError if expiry_year.length != 2
+
+            expiry_year = Integer(expiry_year)
+        rescue ArgumentError
+            puts ""
+            puts "\"#{expiry_year}\" is not a valid input!"
+            puts ""
+
+            retry
+        end
+
+        @shopping_cart.each do |item|
+            @@clothes.each do |category, items|
+                items.each do |target|
+                    target.stock -= 1 if target == item
+                end
+            end
+        end
+
+        @shopping_cart = []
+
+        puts ""
+        puts "Your payment was successfully processed!"
+        puts "Thank you for shopping with us!"
+        puts ""
         
         return
     end
@@ -558,7 +673,6 @@ class Wardrobe
     def update_database
         Dir.foreach(FILE_PATH) do |filename|
             next if filename == '.' or filename == '..'
-            next if File.empty?(FILE_PATH + filename)
 
             category = filename.gsub(".txt", "")
             items = @@clothes[category.to_sym]

@@ -19,10 +19,10 @@ class Clothes < Goods
         "\nColour:".colorize(:yellow) + " #{@colour}" +
         "\nSize:".colorize(:yellow) + " #{@size}" +
         "\nStock:".colorize(:yellow) + " #{@stock} / " +
-        "Price:".colorize(:yellow) + " $#{@price}"
+        "Price:".colorize(:yellow) + " $#{"%.2f" % @price}"
     end
 
     def display_details_one_line
-        return "Name:".colorize(:yellow) + " #{@name}" + " Brand:".colorize(:yellow) + " #{@brand}" + " Type:".colorize(:yellow) + " #{@type}" + " Colour:".colorize(:yellow) + " #{@colour}" + " Size:".colorize(:yellow) + " #{@size}" + " Stock:".colorize(:yellow) + " #{@stock}" + " Price:".colorize(:yellow) + " $#{@price}"
+        return "Name:".colorize(:yellow) + " #{@name}" + " Brand:".colorize(:yellow) + " #{@brand}" + " Type:".colorize(:yellow) + " #{@type}" + " Colour:".colorize(:yellow) + " #{@colour}" + " Size:".colorize(:yellow) + " #{@size}" + " Stock:".colorize(:yellow) + " #{@stock}" + " Price:".colorize(:yellow) + " $#{"%.2f" % @price}"
     end
 end
