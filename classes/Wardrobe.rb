@@ -23,10 +23,6 @@ class Wardrobe
         :shoes => [],
     }
 
-    def self.clothes
-        @@clothes
-    end
-
     def initialize
         retrive_data_from_files
 
@@ -445,7 +441,8 @@ class Wardrobe
         begin
             print "Size? ".colorize(:light_red)
 
-            size = Integer(size = gets.chomp)
+            size = gets.chomp
+            size = Integer(size) if (category == "hat" || category == "pants" || category == "shoes")
         rescue ArgumentError
             puts ""
             puts "\"#{size}\" is not a valid input!"

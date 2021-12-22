@@ -1,1 +1,2 @@
-name:Hat　brand:brand　type:type　colour:colour　size:11　stock:410　price:512.0
+name:Hat1　brand:Adidas　type:Snapback　colour:Black　size:5　stock:12　price:50.0
+name:Hat2　brand:Nike　type:Cap　colour:White　size:6　stock:55　price:59.0

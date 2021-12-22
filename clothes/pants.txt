@@ -1,0 +1,1 @@
+name:Pants　brand:Adidas　type:Runner　colour:Black/White　size:34　stock:12　price:99.0
