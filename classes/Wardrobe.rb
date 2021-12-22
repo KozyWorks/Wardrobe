@@ -1,5 +1,3 @@
-require "credit_card_validations"
-
 require_relative "Hat"
 require_relative "Top"
 require_relative "Pants"
