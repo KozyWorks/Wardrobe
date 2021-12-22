@@ -3,6 +3,7 @@ require_relative "Top"
 require_relative "Pants"
 require_relative "Shoes"
 
+# absolute file path to clothes database
 FILE_PATH = "./clothes/"
 
 class InvalidCategoryError < StandardError
@@ -12,13 +13,15 @@ class NoStockError < StandardError
 end
 
 class Wardrobe
+    # user type that is being decided from the main menu
     @@user_type = ""
 
+    # clothes objects hash
     @@clothes = {
         :hat => [],
         :top => [],
         :pants => [],
-        :shoes => [],
+        :shoes => []
     }
 
     def initialize
@@ -26,16 +29,21 @@ class Wardrobe
 
         run_program
     end
-    
+
     def retrive_data_from_files
+        # loop through each files within database folder
         Dir.foreach(FILE_PATH) do |filename|
+            # skip if filename is . or .. OR if the file is empty
             next if filename == '.' or filename == '..'
             next if File.empty?(FILE_PATH + filename)
 
+            # get category from file name
             category = filename.gsub(".txt", "")
             
+            # open file for data reading purpose only
             file = File.open(FILE_PATH + filename)
 
+            # loop through each line and create clothes object based on their category
             file.each_line do |line|
                 details = []
                 line.chomp.split("　").each do |detail|
@@ -53,6 +61,7 @@ class Wardrobe
                 @@clothes[category.to_sym] << Object.const_get(category.capitalize).new(*details)
             end
 
+            # close the file to free memory
             file.close
         end
     end
@@ -63,6 +72,7 @@ class Wardrobe
         choose_the_user_type
     end
 
+    # choose the user type and proceed to further menu depending on the user type
     def choose_the_user_type
         option = nil
         begin
@@ -79,6 +89,7 @@ class Wardrobe
             when 2
                 @@user_type = "customer"
 
+                # instance variable to store customer's shopping cart
                 @shopping_cart = []
 
                 menu_for_customer
@@ -161,6 +172,7 @@ class Wardrobe
     end
 
     def exit_program
+        # update the database before terminating the application
         update_database
 
         puts ""
