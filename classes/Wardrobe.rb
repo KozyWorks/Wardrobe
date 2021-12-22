@@ -499,8 +499,8 @@ class Wardrobe
         puts "=============================================".colorize(:blue)
         puts "== SHOPPING CART".colorize(:blue)
         puts "=============================================".colorize(:blue)
-        puts ""
 
+        puts ""
         @shopping_cart.each_with_index do |item, index|
             puts "[#{index + 1}]".colorize(:green)
             puts item.display_details
