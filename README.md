@@ -180,25 +180,25 @@ Whenever, the customer enters invalid input (e.g. 15-digits for card number, 13 
 
 ## Workflow diagrams & UML diagram
 
-- Main Menu
+- Main Menu<br />
 <img src="./images/core.png"><br /><br />
-- Menu for clerk
+- Menu for clerk<br />
 <img src="./images/menu_for_clerk.png"><br /><br />
-- Menu for customer
+- Menu for customer<br />
 <img src="./images/menu_for_customer.png"><br /><br />
-- Show all items
+- Show all items<br />
 <img src="./images/show_all_items.png"><br /><br />
-- Add new item
+- Add new item<br />
 <img src="./images/add_new_item.png"><br /><br />
-- View shopping cart
+- View shopping cart<br />
 <img src="./images/view_shopping_cart.png"><br /><br />
-- Delete item
+- Delete item<br />
 <img src="./images/delete_item.png"><br /><br />
-- Add item to shopping cart
+- Add item to shopping cart<br />
 <img src="./images/add_item_to_shopping_cart.png"><br /><br />
-- Make a payment
+- Make a payment<br />
 <img src="./images/make_a_payment.png"><br /><br />
-- UML diagram
+- UML diagram<br />
 <img src="./images/UML%20Diagram.png">
 
 <hr />
