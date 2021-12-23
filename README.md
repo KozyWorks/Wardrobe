@@ -1,5 +1,10 @@
 # Wardrobe
 
+## External link to the project page
+<a href="" target="_blank">https://github.com/Pogeun/Wardrobe</a>
+
+<hr />
+
 ## Documentation
 
 ### ※ System requirements
