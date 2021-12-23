@@ -185,6 +185,7 @@ class Wardrobe
     def show_all_items
         puts ""
 
+        # loop through each category and display details for each item
         @@clothes.each do |category, items|
             next if items.empty?
             
@@ -650,6 +651,28 @@ class Wardrobe
 
             retry
         end
+
+        puts ""
+        cvc = nil
+        begin
+            print "CVC? ".colorize(:light_red)
+
+            cvc = gets.chomp
+
+            raise ArgumentError if cvc.length != 3
+
+            cvc = Integer(cvc)
+        rescue ArgumentError
+            puts ""
+            puts "\"#{cvc}\" is not a valid input!"
+            puts ""
+
+            retry
+        end
+
+        puts ""
+        print "Card holder? ".colorize(:light_red)
+        card_holder = gets.chomp
 
         @shopping_cart.each do |item|
             @@clothes.each do |category, items|

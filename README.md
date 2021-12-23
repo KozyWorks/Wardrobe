@@ -40,10 +40,25 @@ The program will go through each item and create the object based on their type,
 
 This hash gets updated through the iteration of the program which gets stored into the each .txt files before the program gets terminated.
 
+The current version of the application does not have a specific item ID for each clothes, but it is expected to be implemented for better item search, deletion and modification of the existing items.
+
 #### Shopping cart
 Shopping cart is an array of clothes which is stored in Wardrobe object as an instance variable. That said, the shopping cart is unique to each wardrobe object and thus the user can have their own shopping cart in theory.
 
+Unlike the store database (@@clothes), shopping cart is a plain array as I thought it is unnecessary to separate items into different categories.
+
+<center><img src="./images/@@clothes.png" caption="@@clothes"><br>
+@@clothes hash
+
+<b>vs.</b>
+
+<img src="./images/shopping_cart.png" caption="shopping cart"><br>
+shopping cart array</center>
+
 #### Payment
+The current version of the application only accepts the credit/debit card payments. The application will ask the customer to type in their card number, expiry month & year, card holder's name and CVC. Once the proper input has been made, the payment will be proceeded and this will deduct the stock from the database.
+
+Whenever, the customer enters invalid input (e.g. 15-digits for card number, 13 for month, etc.), the users would receive an error message saying that the input is invalid and thus retry with a proper values.
 
 - Menu for clerk
   - **Show all items:** shows every items available in the store separated by categories.
@@ -55,5 +70,9 @@ Shopping cart is an array of clothes which is stored in Wardrobe object as an in
   - **Show all items:** shows every items available in the store separated by categories.
     - **Add item to shopping cart:** prompts the user to choose the category and item number to add an item into their shopping cart.
   - **Show shopping cart:** shows the list of items from the shopping cart.
+    - **Remove item from shopping cart:** remove a selected item from the shopping cart
     - **Make a payment:** prompts the user to type in the card number, expiry month & year, cardholder's name and CVC, then proceed payment.
   - **Exit program:** exits the program.
+
+### User interaction and experience
+
