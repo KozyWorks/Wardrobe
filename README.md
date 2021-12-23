@@ -39,19 +39,13 @@ One is for the "Clerk" of the clothes store where he/she can view the clothes th
 
 On the other hand the application also supports the "Customer" mode which allows the customer to view all the clothes available in the store, add the item into the shopping cart and make a payment via credit card. The current system only allows the payment method of credit card, but it is possible to be extended to PayPal, direct debit, Afterpay, etc.
 
-<hr />
-
 ### ※ Identify the problem it will solve and explain why you are developing it
 The purpose of this application is to allow the store and clerk to easily manage the items available in the store and to reduce the time spent on them manually tracking each items.
 
 On the customer's perspective, it is to ease them tracking their shopping cart and also to provide the fluent experience of the online shopping.
 
-<hr />
-
 ### ※ Identify the target audience
 The target audiences would be any clothing stores which are having difficulties on managing their stocks. The current system is focused on clothes, but this could be extended further in the future and could be used as a prototype for those who are willing to open their online store of any kinds.
-
-<hr />
 
 ### ※ Explain how a member of the target audience will use it
 The current system is built as a terminal application where the user gets prompted to choose their user type between "Clerk" and "Customer". If the user is not willing to proceed any further, they also get an option to quit the program.
@@ -59,8 +53,6 @@ The current system is built as a terminal application where the user gets prompt
 Once the user chooses user type, they are prompted with several options where they can add, delete and view items to the database and also to the shopping cart.
 
 Every time when the user types in invalid option or the input, the user will be informed an error that their option or input is not valid.
-
-<hr />
 
 ### ※ Features and description
 
@@ -186,7 +178,32 @@ Whenever, the customer enters invalid input (e.g. 15-digits for card number, 13 
 
 <hr />
 
-### ※ User interaction and experience
+## Workflow diagrams & UML diagram
+
+- Main Menu
+<img src="./images/core.png"><br /><br />
+- Menu for clerk
+<img src="./images/menu_for_clerk.png"><br /><br />
+- Menu for customer
+<img src="./images/menu_for_customer.png"><br /><br />
+- Show all items
+<img src="./images/show_all_items.png"><br /><br />
+- Add new item
+<img src="./images/add_new_item.png"><br /><br />
+- View shopping cart
+<img src="./images/view_shopping_cart.png"><br /><br />
+- Delete item
+<img src="./images/delete_item.png"><br /><br />
+- Add item to shopping cart
+<img src="./images/add_item_to_shopping_cart.png"><br /><br />
+- Make a payment
+<img src="./images/make_a_payment.png"><br /><br />
+- UML diagram
+<img src="./images/UML%20Diagram.png">
+
+<hr />
+
+## User interaction and experience
 
 The application has user friendly menus that allows the both clerk and customer to easily navigate through the application and choose options.
 
@@ -194,6 +211,14 @@ For each menu pages, the user is expected to enter the number option to intereac
 
 Unlike those menus, users are expected to type in item details instead of selecting the options for those features like add new item, make a payment, etc.
 
-<img src="./images/user_friendly_menu.png" caption="user friendly menu">
-<br />
+<img src="./images/user_friendly_menu.png"><br />
 <img src="./images/add new item example.png">
+
+<hr />
+
+## implementation plan
+
+<img src="./images/Trello%20-%20Work%20In%20Progress.png"><br /><br />
+<img src="./images/Trello%20-%20With%20Features%20&%20checklists.png"><br />
+
+For detailed checklist and due date, please go to <a href="https://trello.com/invite/b/rvtIS3iH/cf9c8de412d32cbb3c6c997d38487468/wardrobe" target="_blank">this</a> page.
