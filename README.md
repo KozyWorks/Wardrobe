@@ -1,4 +1,36 @@
 # Wardrobe
+
+## Documentation
+
+### ※ System requirements
+- Windows, MacOS or Linux
+- Ruby v2.4+ 
+
+### ※ Dependencies
+- Ruby gems
+  - colorize (0.8.1)
+  - rspec (3.10)
+
+### ※ Installation guide
+1. Open terminal at the `src` folder.
+```shell
+cd src
+```
+2. Install `bundler`
+```shell
+gem install bundler
+```
+3. Install all dependecies via `bundler`
+```shell
+bundler install
+```
+4. Run `main.rb` to start the application
+```shell
+ruby main.rb
+```
+
+<hr />
+
 ## Software Development Plan
 ### ※ Describe at a high level what the application will do
 Wardrobe is the application that bascially has two different options.
@@ -158,4 +190,10 @@ Whenever, the customer enters invalid input (e.g. 15-digits for card number, 13 
 
 The application has user friendly menus that allows the both clerk and customer to easily navigate through the application and choose options.
 
+For each menu pages, the user is expected to enter the number option to intereact with the application.
+
+Unlike those menus, users are expected to type in item details instead of selecting the options for those features like add new item, make a payment, etc.
+
 <img src="./images/user_friendly_menu.png" caption="user friendly menu">
+<br />
+<img src="./images/add new item example.png">

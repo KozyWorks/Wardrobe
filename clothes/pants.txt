@@ -1,1 +1,2 @@
 name:Pants　brand:Adidas　type:Runner　colour:Black/White　size:34　stock:12　price:99.0
+name:Skinny jean　brand:Nudie　type:Thin cut　colour:Black　size:32　stock:11　price:199.0
