@@ -12,9 +12,9 @@
   - rspec (3.10)
 
 ### ※ Installation guide
-1. Open terminal at the `src` folder.
+1. Open terminal at the `Wardrobe` folder.
 ```shell
-cd src
+cd Wardrobe
 ```
 2. Install `bundler`
 ```shell
