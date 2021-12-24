@@ -1,6 +1,6 @@
 require "colorize"
 
-require_relative "Goods"
+require_relative "Goods.rb"
 
 class Clothes < Goods
     attr_accessor :colour, :size

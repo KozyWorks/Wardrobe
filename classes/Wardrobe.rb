@@ -1,7 +1,7 @@
-require_relative "Hat"
-require_relative "Top"
-require_relative "Pants"
-require_relative "Shoes"
+require_relative "Hat.rb"
+require_relative "Top.rb"
+require_relative "Pants.rb"
+require_relative "Shoes.rb"
 
 # absolute file path to clothes database
 FILE_PATH = "./clothes/"
@@ -17,20 +17,18 @@ class Wardrobe
     @@user_type = ""
 
     # clothes objects hash
-    @@clothes = {
-        :hat => [],
-        :top => [],
-        :pants => [],
-        :shoes => []
-    }
+    @@clothes = {}
 
     def initialize
         retrive_data_from_files
-
-        run_program
     end
 
     def retrive_data_from_files
+        # initialize the category with an empty array
+        [:hat, :top, :pants, :shoes].each do |category|
+            @@clothes[category] = []
+        end
+
         # loop through each files within database folder
         Dir.foreach(FILE_PATH) do |filename|
             # skip if filename is . or .. OR if the file is empty
@@ -39,7 +37,7 @@ class Wardrobe
 
             # get category from file name
             category = filename.gsub(".txt", "")
-            
+
             # open file for data reading purpose only
             file = File.open(FILE_PATH + filename)
 
@@ -66,7 +64,7 @@ class Wardrobe
         end
     end
 
-    def run_program
+    def run
         puts "Welcome!!!"
 
         choose_the_user_type

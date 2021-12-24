@@ -11,4 +11,7 @@ class Goods
 
     def display_details
     end
+    
+    def display_details_one_line
+    end
 end
